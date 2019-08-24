@@ -1,0 +1,988 @@
+16:19:53 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Traffic_Light_Controller_bsp//HAL/inc -I../Traffic_Light_Controller_bsp/ -I../Traffic_Light_Controller_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'lcd_set_mode':
+hello_world.c:151:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "%c%s", ESC, CLEAR_LCD_STRING);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c:152:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "CURRENT MODE: %d\n", mode);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c: In function 'simple_tlc':
+hello_world.c:167:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:174:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:181:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:188:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:195:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:202:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'pedestrian_tlc':
+hello_world.c:216:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:223:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:230:21: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                     ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:237:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:244:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:251:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:258:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:265:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'main':
+hello_world.c:321:2: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+  alt_irq_register(KEYS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
+  ^
+hello_world.c: In function 'configurable_tlc':
+hello_world.c:274:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int configurable_tlc(){}
+ ^
+hello_world.c: In function 'camera_tlc':
+hello_world.c:275:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int camera_tlc(){}
+ ^
+Info: Linking Traffic_Light_Controller.elf
+nios2-elf-g++  -T'../Traffic_Light_Controller_bsp//linker.x' -msys-crt0='../Traffic_Light_Controller_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Traffic_Light_Controller_bsp/   -Wl,-Map=Traffic_Light_Controller.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Traffic_Light_Controller.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Traffic_Light_Controller.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "//files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller" --sopcinfo //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/../../nios2_system.sopcinfo
+Info: (Traffic_Light_Controller.elf) 81 KBytes program size (code + initialized data).
+Info:                                8103 KBytes free for stack + heap.
+Info: Creating Traffic_Light_Controller.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Traffic_Light_Controller.elf >Traffic_Light_Controller.objdump
+[Traffic_Light_Controller build complete]
+16:20:11 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:20:16 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:20:55 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:21:00 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:24:40 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Traffic_Light_Controller_bsp//HAL/inc -I../Traffic_Light_Controller_bsp/ -I../Traffic_Light_Controller_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'lcd_set_mode':
+hello_world.c:151:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "%c%s", ESC, CLEAR_LCD_STRING);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c:152:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "CURRENT MODE: %d\n", mode);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c: In function 'simple_tlc':
+hello_world.c:167:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:174:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:181:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:188:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:195:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:202:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'pedestrian_tlc':
+hello_world.c:216:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:223:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:230:21: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                     ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:237:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:244:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:251:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:258:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:265:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'main':
+hello_world.c:321:2: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+  alt_irq_register(KEYS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
+  ^
+hello_world.c: In function 'configurable_tlc':
+hello_world.c:274:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int configurable_tlc(){}
+ ^
+hello_world.c: In function 'camera_tlc':
+hello_world.c:275:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int camera_tlc(){}
+ ^
+Info: Linking Traffic_Light_Controller.elf
+nios2-elf-g++  -T'../Traffic_Light_Controller_bsp//linker.x' -msys-crt0='../Traffic_Light_Controller_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Traffic_Light_Controller_bsp/   -Wl,-Map=Traffic_Light_Controller.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Traffic_Light_Controller.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Traffic_Light_Controller.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "//files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller" --sopcinfo //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/../../nios2_system.sopcinfo
+Info: (Traffic_Light_Controller.elf) 81 KBytes program size (code + initialized data).
+Info:                                8103 KBytes free for stack + heap.
+Info: Creating Traffic_Light_Controller.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Traffic_Light_Controller.elf >Traffic_Light_Controller.objdump
+[Traffic_Light_Controller build complete]
+16:24:49 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:26:03 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:30:31 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Traffic_Light_Controller_bsp//HAL/inc -I../Traffic_Light_Controller_bsp/ -I../Traffic_Light_Controller_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'lcd_set_mode':
+hello_world.c:151:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "%c%s", ESC, CLEAR_LCD_STRING);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c:152:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "CURRENT MODE: %d\n", mode);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c: In function 'simple_tlc':
+hello_world.c:167:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:174:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:181:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:188:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:195:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:202:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'pedestrian_tlc':
+hello_world.c:216:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:223:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:230:21: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                     ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:237:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:244:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:251:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:258:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:265:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'main':
+hello_world.c:321:2: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+  alt_irq_register(KEYS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
+  ^
+hello_world.c: In function 'configurable_tlc':
+hello_world.c:274:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int configurable_tlc(){}
+ ^
+hello_world.c: In function 'camera_tlc':
+hello_world.c:275:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int camera_tlc(){}
+ ^
+Info: Linking Traffic_Light_Controller.elf
+nios2-elf-g++  -T'../Traffic_Light_Controller_bsp//linker.x' -msys-crt0='../Traffic_Light_Controller_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Traffic_Light_Controller_bsp/   -Wl,-Map=Traffic_Light_Controller.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Traffic_Light_Controller.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Traffic_Light_Controller.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "//files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller" --sopcinfo //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/../../nios2_system.sopcinfo
+Info: (Traffic_Light_Controller.elf) 81 KBytes program size (code + initialized data).
+Info:                                8103 KBytes free for stack + heap.
+Info: Creating Traffic_Light_Controller.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Traffic_Light_Controller.elf >Traffic_Light_Controller.objdump
+[Traffic_Light_Controller build complete]
+16:30:40 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:34:30 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Traffic_Light_Controller_bsp//HAL/inc -I../Traffic_Light_Controller_bsp/ -I../Traffic_Light_Controller_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'lcd_set_mode':
+hello_world.c:152:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "%c%s", ESC, CLEAR_LCD_STRING);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c:153:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "CURRENT MODE: %d\n", mode);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c: In function 'simple_tlc':
+hello_world.c:168:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:175:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:182:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:189:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:196:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:203:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'pedestrian_tlc':
+hello_world.c:217:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:224:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:231:21: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                     ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:238:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:245:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:252:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:259:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:266:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'main':
+hello_world.c:322:2: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+  alt_irq_register(KEYS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
+  ^
+hello_world.c: In function 'configurable_tlc':
+hello_world.c:275:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int configurable_tlc(){}
+ ^
+hello_world.c: In function 'camera_tlc':
+hello_world.c:276:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int camera_tlc(){}
+ ^
+Info: Linking Traffic_Light_Controller.elf
+nios2-elf-g++  -T'../Traffic_Light_Controller_bsp//linker.x' -msys-crt0='../Traffic_Light_Controller_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Traffic_Light_Controller_bsp/   -Wl,-Map=Traffic_Light_Controller.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Traffic_Light_Controller.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Traffic_Light_Controller.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "//files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller" --sopcinfo //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/../../nios2_system.sopcinfo
+Info: (Traffic_Light_Controller.elf) 81 KBytes program size (code + initialized data).
+Info:                                8103 KBytes free for stack + heap.
+Info: Creating Traffic_Light_Controller.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Traffic_Light_Controller.elf >Traffic_Light_Controller.objdump
+[Traffic_Light_Controller build complete]
+16:34:39 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:36:32 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Traffic_Light_Controller_bsp//HAL/inc -I../Traffic_Light_Controller_bsp/ -I../Traffic_Light_Controller_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'lcd_set_mode':
+hello_world.c:152:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "%c%s", ESC, CLEAR_LCD_STRING);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c:153:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "CURRENT MODE: %d\n", mode);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c: In function 'simple_tlc':
+hello_world.c:168:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:175:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:182:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:189:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:196:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:203:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'pedestrian_tlc':
+hello_world.c:217:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:224:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:231:21: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                     ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:238:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:245:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:252:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:259:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:266:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'main':
+hello_world.c:322:2: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+  alt_irq_register(KEYS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
+  ^
+hello_world.c: In function 'configurable_tlc':
+hello_world.c:275:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int configurable_tlc(){}
+ ^
+hello_world.c: In function 'camera_tlc':
+hello_world.c:276:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int camera_tlc(){}
+ ^
+Info: Linking Traffic_Light_Controller.elf
+nios2-elf-g++  -T'../Traffic_Light_Controller_bsp//linker.x' -msys-crt0='../Traffic_Light_Controller_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Traffic_Light_Controller_bsp/   -Wl,-Map=Traffic_Light_Controller.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Traffic_Light_Controller.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Traffic_Light_Controller.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "//files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller" --sopcinfo //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/../../nios2_system.sopcinfo
+Info: (Traffic_Light_Controller.elf) 81 KBytes program size (code + initialized data).
+Info:                                8103 KBytes free for stack + heap.
+Info: Creating Traffic_Light_Controller.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Traffic_Light_Controller.elf >Traffic_Light_Controller.objdump
+[Traffic_Light_Controller build complete]
+16:36:42 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:40:03 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:40:08 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:42:38 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/cygdrive/c/intelFPGA/16.1/quartus/bin64/cygwin/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/cygdrive/c/intelFPGA/16.1/quartus/bin64/cygwin/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:42:57 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
+16:47:58 **** Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../Traffic_Light_Controller_bsp//HAL/inc -I../Traffic_Light_Controller_bsp/ -I../Traffic_Light_Controller_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'lcd_set_mode':
+hello_world.c:152:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "%c%s", ESC, CLEAR_LCD_STRING);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c:153:12: warning: passing argument 1 of 'fprintf' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    fprintf(lcd, "CURRENT MODE: %d\n", mode);
+            ^
+In file included from c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:29:0,
+                 from hello_world.c:1:
+c:\intelfpga\16.1\nios2eds\bin\gnu\h-x86_64-mingw32\nios2-elf\include\stdio.h:211:5: note: expected 'FILE * restrict {aka struct __sFILE * restrict}' but argument is of type 'volatile FILE * {aka volatile struct __sFILE *}'
+ int _EXFUN(fprintf, (FILE *__restrict, const char *__restrict, ...)
+     ^
+hello_world.c: In function 'simple_tlc':
+hello_world.c:168:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:175:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:182:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:189:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:196:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:203:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'pedestrian_tlc':
+hello_world.c:217:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:224:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:231:21: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                     ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:238:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:245:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:252:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:259:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c:266:20: warning: passing argument 1 of 'alt_alarm_start' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+    alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
+                    ^
+In file included from hello_world.c:2:0:
+../Traffic_Light_Controller_bsp//HAL/inc/sys/alt_alarm.h:67:12: note: expected 'alt_alarm * {aka struct alt_alarm_s *}' but argument is of type 'volatile alt_alarm * {aka volatile struct alt_alarm_s *}'
+ extern int alt_alarm_start (alt_alarm* the_alarm, 
+            ^
+hello_world.c: In function 'main':
+hello_world.c:322:2: warning: implicit declaration of function 'alt_irq_register' [-Wimplicit-function-declaration]
+  alt_irq_register(BUTTONS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
+  ^
+hello_world.c: In function 'configurable_tlc':
+hello_world.c:275:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int configurable_tlc(){}
+ ^
+hello_world.c: In function 'camera_tlc':
+hello_world.c:276:1: warning: control reaches end of non-void function [-Wreturn-type]
+ int camera_tlc(){}
+ ^
+Info: Linking Traffic_Light_Controller.elf
+nios2-elf-g++  -T'../Traffic_Light_Controller_bsp//linker.x' -msys-crt0='../Traffic_Light_Controller_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../Traffic_Light_Controller_bsp/   -Wl,-Map=Traffic_Light_Controller.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global  -o Traffic_Light_Controller.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert Traffic_Light_Controller.elf --thread_model hal --cpu_name cpu --qsys true --simulation_enabled false --id 308784078 --sidp 0x0 --timestamp 1502336826 --stderr_dev jtag_uart --stdin_dev jtag_uart --stdout_dev jtag_uart --sopc_system_name nios2_system --quartus_project_dir "//files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller" --sopcinfo //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/../../nios2_system.sopcinfo
+Info: (Traffic_Light_Controller.elf) 81 KBytes program size (code + initialized data).
+Info:                                8103 KBytes free for stack + heap.
+Info: Creating Traffic_Light_Controller.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source Traffic_Light_Controller.elf >Traffic_Light_Controller.objdump
+[Traffic_Light_Controller build complete]
+16:48:08 **** Incremental Build of configuration Nios II for project Traffic_Light_Controller ****
+make all 
+/usr/bin/sh: line 0: cd: ../Traffic_Light_Controller_bsp/: No such file or directory
+/usr/bin/sh: line 0: cd: ../../: No such file or directory
+Info: Building ../Traffic_Light_Controller_bsp/
+C:/intelFPGA/16.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../Traffic_Light_Controller_bsp/
+[BSP build complete]
+[Traffic_Light_Controller build complete]
