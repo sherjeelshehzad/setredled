@@ -3,14 +3,14 @@
 #include <system.h>
 #include <altera_avalon_pio_regs.h>
 #include <math.h>
-#include <string.h>
 #include <alt_types.h> //alt_u32 is a kind of alt_type
 #include <sys/alt_irq.h> //to register interrupts
 
-//define timer timeout values for mode1/2/4
+
 #define rrrr 500
 #define grrg 6000
 #define yrry 2000
+
 
 //Mode 1 states
 enum simple_state{rr1_1,gr_1,yr_1,rr2_1,rg_1,ry_1,buffer_1};
@@ -24,15 +24,14 @@ enum configurable_state{rr1_3,gr_3,grp1_3,yr_3,rr2_3,rg_3,rgp2_3,ry_3,buffer_3};
 //Mode 4 states
 enum camera_state{rr1_4,gr_4,grp1_4,yr_4,rr2_4,rg_4,rgp2_4,ry_4,buffer_4};
 
-//global variable section for peripheral streams, states, and flags
+//instantiating multiple timers to handle different timer modes
+//without crashes
 volatile alt_alarm timer_simple;
 volatile FILE *lcd;
-volatile FILE *uart;
 volatile int timer_has_started = 0;
 volatile int current_mode = 50;
 volatile int mode_request = 0;
 volatile int mode_display = 50;
-volatile char config_values[50];
 volatile enum simple_state current_state1 = rr1_1;
 volatile enum simple_state previous_state1 = rr1_1;
 volatile enum pedestrian_state current_state2 = rr1_2;
@@ -43,14 +42,8 @@ volatile enum camera_state current_state4 = rr1_4;
 volatile enum camera_state previous_state4 = rr1_4;
 volatile int pedNS = 0;
 volatile int pedEW = 0;
-volatile const char comma[2] = ",";
-//create timer variables for mode 3, and initialise them to the default preset values
-volatile unsigned int t1 = rrrr;
-volatile unsigned int t2 = grrg;
-volatile unsigned int t3 = yrry;
-volatile unsigned int t4 = rrrr;
-volatile unsigned int t5 = grrg;
-volatile unsigned int t6 = yrry;
+
+
 
 alt_u32 simple_tlc_timer_isr(void* context){
 		//enum simple_state *something = (enum simple_state*) context;
@@ -178,42 +171,42 @@ int simple_tlc(){
 	if (current_state1 == rr1_1){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b100100); //turn RED-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, simple_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state1 == gr_1){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b100001); //turn GREEN-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, simple_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state1 == yr_1){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b100010); //turn YELLOW-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, simple_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state1 == rr2_1){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b100100); //turn RED-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, simple_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 500, simple_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state1 == rg_1){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b001100); //turn RED-GREEN on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, simple_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 6000, simple_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state1 == ry_1){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b010100); //turn RED-YELLOW on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, simple_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 2000, simple_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
@@ -227,56 +220,56 @@ int pedestrian_tlc() {
 	if (current_state2 == rr1_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state2 == gr_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100001); //turn GREEN-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state2 == grp1_2){
 			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b01100001); //turn GREEN-RED and PEDNS on
 			if (!(timer_has_started)){
-				alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+				alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
 				timer_has_started = 1;
 			}
 	}
 	else if (current_state2 == yr_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100010); //turn YELLOW-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state2 == rr2_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 500, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state2 == rg_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00001100); //turn RED-GREEN on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state2 == rgp2_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b10001100); //turn RED-GREEN and PEDEW on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 6000, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state2 == ry_2){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00010100); //turn RED-YELLOW on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, 2000, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
@@ -285,84 +278,7 @@ int pedestrian_tlc() {
 }
 
 // Mode 3
-int configurable_tlc(){
-	void* timerContext = 0;
-	unsigned int switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-	unsigned int strcomplete = 0;
-	unsigned int i = 0; //string index
-	//loop through all states, starting timer on current state and setting outputs
-	if (current_state3 == rr1_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
-		//check switch value to see if there are new timer values
-		switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-
-		if (switch_value & (1<<17)){
-			//if switch 17 indicates configuration mode, block until complete valid string is received
-			i = 0; //reset string index
-			while (strcomplete == 0){
-				config_values[i] = fgetc(uart);
-				++i;
-				if (config_values[i-1] == '\n'){
-
-				}
-			}
-		}
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	else if (current_state3 == gr_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100001); //turn GREEN-RED on
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	else if (current_state3 == grp1_3){
-			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b01100001); //turn GREEN-RED and PEDNS on
-			if (!(timer_has_started)){
-				alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
-				timer_has_started = 1;
-			}
-	}
-	else if (current_state3 == yr_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100010); //turn YELLOW-RED on
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	else if (current_state3 == rr2_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	else if (current_state3 == rg_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00001100); //turn RED-GREEN on
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	else if (current_state3 == rgp2_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b10001100); //turn RED-GREEN and PEDEW on
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	else if (current_state3 == ry_3){
-		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00010100); //turn RED-YELLOW on
-		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, pedestrian_tlc_timer_isr, timerContext);
-			timer_has_started = 1;
-		}
-	}
-	return 0;
-}
+int configurable_tlc(){}
 int camera_tlc(){}
 /*alt_u32 timer_isr_function(void* context) {
 	unsigned int *timeCount = (unsigned int*) context;
@@ -412,7 +328,6 @@ int main() {
 	alt_irq_register(BUTTONS_IRQ, context_going_to_be_passed, pedestrian_button_interrupt);
 	//turn on the LCD
 	lcd = fopen(LCD_NAME, "w");
-	uart = fopen(UART_NAME, "r");
 
 	while(1) {
 		//read switch value and bitmask to check specific switches (descending priority)

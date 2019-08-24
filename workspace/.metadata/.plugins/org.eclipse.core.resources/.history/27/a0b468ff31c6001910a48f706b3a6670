@@ -3,7 +3,6 @@
 #include <system.h>
 #include <altera_avalon_pio_regs.h>
 #include <math.h>
-#include <string.h>
 #include <alt_types.h> //alt_u32 is a kind of alt_type
 #include <sys/alt_irq.h> //to register interrupts
 
@@ -24,7 +23,8 @@ enum configurable_state{rr1_3,gr_3,grp1_3,yr_3,rr2_3,rg_3,rgp2_3,ry_3,buffer_3};
 //Mode 4 states
 enum camera_state{rr1_4,gr_4,grp1_4,yr_4,rr2_4,rg_4,rgp2_4,ry_4,buffer_4};
 
-//global variable section for peripheral streams, states, and flags
+//instantiating multiple timers to handle different timer modes
+//without crashes
 volatile alt_alarm timer_simple;
 volatile FILE *lcd;
 volatile FILE *uart;
@@ -32,7 +32,6 @@ volatile int timer_has_started = 0;
 volatile int current_mode = 50;
 volatile int mode_request = 0;
 volatile int mode_display = 50;
-volatile char config_values[50];
 volatile enum simple_state current_state1 = rr1_1;
 volatile enum simple_state previous_state1 = rr1_1;
 volatile enum pedestrian_state current_state2 = rr1_2;
@@ -43,7 +42,7 @@ volatile enum camera_state current_state4 = rr1_4;
 volatile enum camera_state previous_state4 = rr1_4;
 volatile int pedNS = 0;
 volatile int pedEW = 0;
-volatile const char comma[2] = ",";
+
 //create timer variables for mode 3, and initialise them to the default preset values
 volatile unsigned int t1 = rrrr;
 volatile unsigned int t2 = grrg;
@@ -287,26 +286,12 @@ int pedestrian_tlc() {
 // Mode 3
 int configurable_tlc(){
 	void* timerContext = 0;
-	unsigned int switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-	unsigned int strcomplete = 0;
-	unsigned int i = 0; //string index
 	//loop through all states, starting timer on current state and setting outputs
 	if (current_state3 == rr1_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
+
 		//check switch value to see if there are new timer values
-		switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-
-		if (switch_value & (1<<17)){
-			//if switch 17 indicates configuration mode, block until complete valid string is received
-			i = 0; //reset string index
-			while (strcomplete == 0){
-				config_values[i] = fgetc(uart);
-				++i;
-				if (config_values[i-1] == '\n'){
-
-				}
-			}
-		}
+		unsigned int switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
 		if (!(timer_has_started)){
 			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
