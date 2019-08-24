@@ -24,7 +24,7 @@ enum configurable_state{rr1_3,gr_3,grp1_3,yr_3,rr2_3,rg_3,rgp2_3,ry_3,buffer_3};
 //Mode 4 states
 enum camera_state{rr1_4,gr_4,grp1_4,yr_4,rr2_4,rg_4,rgp2_4,ry_4,buffer_4};
 
-//global variable section for peripheral streams, states, and flags
+//global variable declaration section for peripheral streams, states, flags, and constants
 volatile alt_alarm timer_simple;
 volatile FILE *lcd;
 volatile FILE *uart;
@@ -43,7 +43,7 @@ volatile enum camera_state current_state4 = rr1_4;
 volatile enum camera_state previous_state4 = rr1_4;
 volatile int pedNS = 0;
 volatile int pedEW = 0;
-volatile const char comma[2] = ",";
+const char comma[2] = ",";
 //create timer variables for mode 3, and initialise them to the default preset values
 volatile unsigned int t1 = rrrr;
 volatile unsigned int t2 = grrg;
@@ -135,6 +135,78 @@ alt_u32 pedestrian_tlc_timer_isr(void* context){
 		if (current_state2 == buffer_2) //if at final state, loop back to initial state using buffer state
 			current_state2 = rr1_2;
 		printf("current state ped_timer %d\n", current_state2);
+
+		timer_has_started = 0; //reset timer_started flag
+	return 0;
+}
+
+//timer ISR (and system state transition logic) for configurable timer
+alt_u32 configurable_tlc_timer_isr(void* context){
+		//enum simple_state *something = (enum simple_state*) context;
+
+		//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
+		if (mode_request != current_mode){
+			if ((current_state3 == rr1_3) || (current_state3 == rr2_3))
+				return 0;
+		}
+
+		previous_state2 = current_state2; //save previous state for output transition logic
+		if (pedNS){
+			//we are at state RED-RED (1), handle NS pedestrians
+			if (current_state3 == rr1_3)
+				current_state3 += 2;
+			//we are at state GREEN-RED, too late to handle NS pedestrians so skip past PED state
+			else if (current_state3 == gr_3)
+				current_state3 += 2;
+			//we are at state RED-GREEN, cannot handle NS pedestrians here so skip past PED state
+			else if (current_state3 == rg_3)
+				current_state3 += 2;
+			else
+				current_state3++;
+		}
+		else if (pedEW){
+			//we are at state RED-RED (2), handle EW pedestrians
+			if (current_state3 == rr2_3)
+				current_state3 += 2;
+			//we are at state RED-GREEN, too late to handle EW pedestrians so skip past PED state
+			else if (current_state2 == rg_3)
+				current_state3 += 2;
+			//we are at state GREEN-RED, cannot handle EW pedestrians here so skip past PED state
+			else if (current_state3 == gr_3)
+				current_state3 += 2;
+			else
+				current_state3++;
+		}
+		else if ((pedEW) && (pedNS)){
+			//handle pedestrians at either of the RED-RED states because
+			if ((current_state3 == rr1_3) || (current_state3 == rr2_3))
+				current_state3 += 2;
+			//we are at state GREEN-RED, too late to handle NS pedestrians so skip past PED state
+			else if (current_state3 == gr_3)
+				current_state3 += 2;
+			//we are at state RED-GREEN, cannot handle NS pedestrians here so skip past PED state
+			else if (current_state3 == rg_3)
+				current_state3 += 2;
+			else
+				current_state3++;
+		}
+		//if no PED interrupt flags, skip past PED states from GREEN-RED and RED-GREEN
+		else if (current_state3 == gr_3)
+			current_state3 += 2;
+		else if (current_state3 == rg_3)
+			current_state3 += 2;
+		else
+			current_state3++; //move to the next state if no
+
+		//reset the NS/EW pedestrian button interrupt flag when we have changed state (NS/EWHandled = 1)
+		if (previous_state3 == grp1_3)
+			pedNS = 0;
+		else if (previous_state3 == rgp2_3)
+			pedEW = 0;
+
+		if (current_state3 == buffer_3) //if at final state, loop back to initial state using buffer state
+			current_state3 = rr1_3;
+		printf("current state config_timer %d\n", current_state3);
 
 		timer_has_started = 0; //reset timer_started flag
 	return 0;
@@ -288,8 +360,7 @@ int pedestrian_tlc() {
 int configurable_tlc(){
 	void* timerContext = 0;
 	unsigned int switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
-	unsigned int strcomplete = 0;
-	unsigned int i = 0; //string index
+
 	//loop through all states, starting timer on current state and setting outputs
 	if (current_state3 == rr1_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
@@ -298,66 +369,119 @@ int configurable_tlc(){
 
 		if (switch_value & (1<<17)){
 			//if switch 17 indicates configuration mode, block until complete valid string is received
-			i = 0; //reset string index
+			unsigned int strcomplete = 0;
+			unsigned int i = 0; //index for string retrieved from UART
+			char **splitstrings; //pointer to array of c-strings
+			int numbers[10]; //array to store timeout values received from UART
+
+			//allocate enough memory for array of c-strings
+			splitstrings = (char**)malloc(10);
+			//allocate enough memory for each c-string in array
+			for (int j = 0; j < sizeof(splitstrings); ++j) {
+				splitstrings[j] = (char*)malloc(10);
+			}
+			//block code and get input from UART stream
 			while (strcomplete == 0){
 				config_values[i] = fgetc(uart);
+				printf("%c",config_values[i]);
 				++i;
 				if (config_values[i-1] == '\n'){
 
+					//add NULL to end of string to indicate end of string
+					config_values[i] = '\0';
+					//move iterator to position 0 (effectively flushing the buffer)
+					i = 0;
+					unsigned int k = 1; //iterator for array of c-strings
+
+					//use strtok to split the UART string into separate strings from between the commas
+					splitstrings[0] = strtok(config_values,comma);
+					while (splitstrings[k-1] != NULL) {
+							splitstrings[k] = strtok(NULL, comma);
+							++k;
+					}
+
+					k = 0; //reset iterator for array of c-strings
+					//do base-10 conversion of split strings to integers using strtol
+					//this returns 0 for an invalid integer, so we are assuming a 0ms timeout is invalid
+					while (splitstrings[k] != NULL){
+						numbers[k] = strtol(splitstrings[k],NULL,10);
+						++k;
+					}
+
+					if (k == 6){
+						unsigned int notinrange = 0;
+						for (int j = 0; j < 6; ++j){
+							if ((numbers[j] <= 0) && (numbers[j] > 9999)){
+								notinrange = 1;
+								printf("Please re-enter numbers \n");
+								break;
+							}
+						}
+						if (!(notinrange)){
+							strcomplete = 1;
+						}
+					}
 				}
 			}
+			//since numbers have been discovered to be valid, assign them to the timer controlling variables
+			t1 = numbers[0];
+			t2 = numbers[1];
+			t3 = numbers[2];
+			t4 = numbers[3];
+			t5 = numbers[4];
+			t6 = numbers[5];
 		}
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t1, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state3 == gr_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100001); //turn GREEN-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t2, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state3 == grp1_3){
 			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b01100001); //turn GREEN-RED and PEDNS on
 			if (!(timer_has_started)){
-				alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+				alt_alarm_start(&timer_simple, t2, configurable_tlc_timer_isr, timerContext);
 				timer_has_started = 1;
 			}
 	}
 	else if (current_state3 == yr_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100010); //turn YELLOW-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t3, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state3 == rr2_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00100100); //turn RED-RED on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, rrrr, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t4, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state3 == rg_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00001100); //turn RED-GREEN on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t5, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state3 == rgp2_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b10001100); //turn RED-GREEN and PEDEW on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, grrg, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t5, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
 	else if (current_state3 == ry_3){
 		IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b00010100); //turn RED-YELLOW on
 		if (!(timer_has_started)){
-			alt_alarm_start(&timer_simple, yrry, pedestrian_tlc_timer_isr, timerContext);
+			alt_alarm_start(&timer_simple, t6, configurable_tlc_timer_isr, timerContext);
 			timer_has_started = 1;
 		}
 	}
@@ -415,6 +539,7 @@ int main() {
 	uart = fopen(UART_NAME, "r");
 
 	while(1) {
+		//fputc('a',uart);
 		//read switch value and bitmask to check specific switches (descending priority)
 		switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
 		//set mode request depending on switch configuration
