@@ -5,7 +5,7 @@
 <stringAttribute key="byteStreamDeviceCableName" value="USB-Blaster on localhost [USB-0]"/>
 <stringAttribute key="byteStreamDeviceDeviceID" value="1"/>
 <stringAttribute key="byteStreamDeviceInstanceID" value="0"/>
-<stringAttribute key="com.altera.sbtgui.launch.REMOTE_PORT" value="64774"/>
+<stringAttribute key="com.altera.sbtgui.launch.REMOTE_PORT" value="64652"/>
 <booleanAttribute key="downloadProgram" value="true"/>
 <stringAttribute key="elfFile" value="\\files.auckland.ac.nz\myhome\Desktop\Group_28_CS301_A1\software\Traffic_Light_Controller\Traffic_Light_Controller.elf"/>
 <stringAttribute key="org.eclipse.cdt.debug.mi.core.GDB_INIT" value=""/>
