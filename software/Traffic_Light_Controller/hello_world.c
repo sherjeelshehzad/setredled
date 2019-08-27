@@ -1,3 +1,6 @@
+//COMPSYS303 Assignment 1 2019: Traffic Light Controller
+//By Sherjeel Shehzad and Kevin Tang
+
 #include <stdio.h>
 #include "sys/alt_alarm.h"
 #include <system.h>
@@ -36,7 +39,9 @@ volatile int camera_timer_has_started = 0;
 volatile int current_mode = 50;
 volatile int mode_request = 0;
 volatile int mode_display = 50;
-volatile char config_values[50];
+volatile int pedNS = 0;
+volatile int pedEW = 0;
+volatile int vehicle_cross = 0;
 volatile enum simple_state current_state1 = rr1_1;
 volatile enum simple_state previous_state1 = rr1_1;
 volatile enum pedestrian_state current_state2 = rr1_2;
@@ -45,10 +50,8 @@ volatile enum configurable_state current_state3 = rr1_3;
 volatile enum configurable_state previous_state3 = rr1_3;
 volatile enum camera_state current_state4 = rr1_4;
 volatile enum camera_state previous_state4 = rr1_4;
-volatile int pedNS = 0;
-volatile int pedEW = 0;
-volatile int vehicle_cross = 0;
 volatile unsigned long int count = 0; //vehicle timer counter
+volatile char config_values[50];
 const char comma[2] = ",";
 //create timer variables for mode 3, and initialise them to the default preset values
 volatile unsigned int t1 = rrrr;
@@ -57,6 +60,12 @@ volatile unsigned int t3 = yrry;
 volatile unsigned int t4 = rrrr;
 volatile unsigned int t5 = grrg;
 volatile unsigned int t6 = yrry;
+//string names for console output
+volatile char string1[];
+volatile char string2[];
+volatile char string3[];
+volatile char string4[];
+
 
 //helper function to reset volatile variables on mode change
 void reset_volatiles(){
@@ -80,32 +89,47 @@ void reset_volatiles(){
 	t6 = yrry;
 }
 
+//timer ISR for switching states
 alt_u32 simple_tlc_timer_isr(void* context){
-		//enum simple_state *something = (enum simple_state*) context;
-		//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
-		if (mode_request != current_mode){
-			if ((current_state1 == rr1_1) || (current_state1 == rr2_1))
-				return 0;
-		}
-
+	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
+	if (mode_request != current_mode){
+		if ((current_state1 == rr1_1) || (current_state1 == rr2_1))
+			return 0;
+	}
 		previous_state1 = current_state1; //save previous state for output transition logic
 		current_state1++; //move to the next state
 		if (current_state1 == buffer_1) //if at final state, loop back to initial state using a buffer state
 			current_state1 = rr1_1;
-		printf("current state simple_timer %d\n", current_state1);
+		if(current_state1 == 0) {
+			string1[0] = "Red-Red(1)";
+		}
+		else if(current_state1 == 1) {
+			string1[0] = "Green-Red";
+		}
+		else if(current_state1 == 2) {
+			string1[0] = "Yellow-Red";
+		}
+		else if(current_state1 == 3) {
+			string1[0] = "Red-Red(2)";
+		}
+		else if(current_state1 == 4) {
+			string1[0] = "Red-Green";
+		}
+		else if(current_state1 == 5) {
+			string1[0] = "Red-Yellow";
+		}
+		printf("current state simple_timer %s\n", string1);
 		timer_has_started = 0; //reset timer_started flag
 	return 0;
 }
 
+//timer ISR for switching pedestrian states
 alt_u32 pedestrian_tlc_timer_isr(void* context){
-		//enum simple_state *something = (enum simple_state*) context;
-
 		//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 		if (mode_request != current_mode){
 			if ((current_state2 == rr1_2) | (current_state2 == rr2_2))
 				return 0;
 		}
-
 		previous_state2 = current_state2; //save previous state for output transition logic
 		if ((pedEW) && (pedNS)){
 			//handle pedestrians at either of the RED-RED states because
@@ -170,14 +194,11 @@ alt_u32 pedestrian_tlc_timer_isr(void* context){
 
 //timer ISR (and system state transition logic) for configurable timer
 alt_u32 configurable_tlc_timer_isr(void* context){
-		//enum simple_state *something = (enum simple_state*) context;
-
 		//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 		if (mode_request != current_mode){
 			if ((current_state3 == rr1_3) || (current_state3 == rr2_3))
 				return 0;
 		}
-
 		previous_state3 = current_state3; //save previous state for output transition logic
 		if ((pedEW) && (pedNS)){
 			//handle pedestrians at either of the RED-RED states because
@@ -242,8 +263,6 @@ alt_u32 configurable_tlc_timer_isr(void* context){
 
 //timer ISR (and system state transition logic) for configurable timer
 alt_u32 camera_tlc_timer_isr(void* context){
-		//enum simple_state *something = (enum simple_state*) context;
-
 		//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 		if (mode_request != current_mode){
 			if ((current_state4 == rr1_4) || (current_state4 == rr2_4))
@@ -323,12 +342,13 @@ alt_u32 vehicle_timer_isr(void* context){
 	return 1;
 }
 
-//button interrupt function for pedestrian buttons and
+//button interrupt function for pedestrian and camera buttons
 void button_interrupt(void* context, alt_u32 id) {
 	//read edge capture register and button value
 	unsigned int edgeCapture = IORD_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE);
 	unsigned int uiButtonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
 	void* timerContext = 0;
+	unsigned long int secondCount = 0;
 
 	if (!(uiButtonsValue & 1<<0)) {
 		pedNS = 1;
@@ -360,12 +380,19 @@ void button_interrupt(void* context, alt_u32 id) {
 				alt_alarm_stop(&timer_camera);
 				alt_alarm_stop(&timer_vehicle);
 				fprintf(uart,"Vehicle left\r\n");
-				fprintf(uart,"Vehicle was in the intersection for %d ms.\r\n",count);
+				//convert ms to s if more than 10 s
+				if(count > 10000) {
+					secondCount = count / 1000;
+					fprintf(uart,"Vehicle was in the intersection for %d s.\r\n",secondCount);
+				}
+				else {
+					fprintf(uart,"Vehicle was in the intersection for %d ms.\r\n",count);
+				}
 				count = 0;
+				secondCount = 0;
 			}
 		}
 	}
-
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
 }
 
@@ -383,8 +410,8 @@ int lcd_set_mode(int mode){
 	return 0;
 }
 
-// Mode 1
-// Simple controller with automatic lights
+//Mode 1
+//Simple controller with automatic lights
 int simple_tlc(){
 	void* timerContext = 0;
 	//loop through all states, starting timer on current state and setting outputs
@@ -433,7 +460,8 @@ int simple_tlc(){
 	return 0;
 }
 
-// Mode 2
+//Mode 2
+//Simple mode with pedestrian inputs
 int pedestrian_tlc() {
 	void* timerContext = 0;
 	//loop through all states, starting timer on current state and setting outputs
@@ -496,7 +524,8 @@ int pedestrian_tlc() {
 	return 0;
 }
 
-// Mode 3
+//Mode 3
+//Able to configure the switching times
 int configurable_tlc(){
 	void* timerContext = 0;
 	unsigned int switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
@@ -629,6 +658,7 @@ int configurable_tlc(){
 }
 
 //Mode 4
+//Adds a camera to the intersection
 int camera_tlc(){
 	void* timerContext = 0;
 	unsigned int switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
@@ -763,6 +793,11 @@ int camera_tlc(){
 
 int main() {
 	unsigned int switch_value = 0;
+	unsigned int mode4request = 0;
+	unsigned int mode3request = 0;
+	unsigned int mode2request = 0;
+	unsigned int mode1request = 0;
+	unsigned int mode0request = 0;
 	void* context = 0;
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
 	//enable interrupts for all buttons
@@ -771,7 +806,7 @@ int main() {
 	alt_irq_register(BUTTONS_IRQ, context, button_interrupt);
 	//turn on the LCD
 	lcd = fopen(LCD_NAME, "w");
-	uart = fopen(UART_NAME, "r+");
+	uart = fopen(UART_NAME, "r+"); //open a text file for update (that is, for both reading and writing)
 
 	while(1) {
 		//read switch value and bitmask to check specific switches (descending priority)
@@ -780,18 +815,58 @@ int main() {
 		//priority encoded (descending order, i.e. mode 4 is highest and mode 1 is lowest)
 		if ((1<<3 & switch_value)) {
 			mode_request = 4;
+			if(mode4request == 0){
+				printf("Switch to Mode 4 Requested \n");
+				mode4request = 1;
+			}
+			mode3request = 0;
+			mode2request = 0;
+			mode1request = 0;
+			mode0request = 0;
 		}
 		else if ((1<<2 & switch_value)) {
 			mode_request = 3;
+			if(mode3request == 0){
+				printf("Switch to Mode 3 Requested \n");
+				mode3request = 1;
+			}
+			mode4request = 0;
+			mode2request = 0;
+			mode1request = 0;
+			mode0request = 0;
 		}
 		else if ((1<<1 & switch_value)) {
 			mode_request = 2;
+			if(mode2request == 0){
+				printf("Switch to Mode 2 Requested \n");
+				mode2request = 1;
+			}
+			mode4request = 0;
+			mode3request = 0;
+			mode1request = 0;
+			mode0request = 0;
 		}
 		else if ((1<<0 & switch_value)) {
 			mode_request = 1;
+			if(mode1request == 0){
+				printf("Switch to Mode 1 Requested \n");
+				mode1request = 1;
+			}
+			mode4request = 0;
+			mode3request = 0;
+			mode2request = 0;
+			mode0request = 0;
 		}
 		else
 			mode_request = 0;
+		if(mode0request == 0){
+			printf("Switch to Mode 0 Requested \n");
+			mode0request = 1;
+			mode4request = 0;
+			mode3request = 0;
+			mode2request = 0;
+			mode1request = 0;
+		}
 
 		//if there is a new mode request:
 		//check if we are at a safe state (corresponding to the mode we are in)
@@ -848,7 +923,7 @@ int main() {
 			break;
 		default:
 			lcd_set_mode(0);
-			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b111111); //all LEDs on
+			IOWR_ALTERA_AVALON_PIO_DATA(LEDS_GREEN_BASE, 0b111111); //all LEDs on (Debug)
 		}
 	}
 	return 0;
