@@ -76,7 +76,7 @@ The states will be the same as Mode 1 but will also contain Green-Red-Ped 1 and 
 ### Mode 3: Configurable State
 
 The Configurable State allows the user to configure the time between states using UART and PuTTY based on Mode 2.
-In order to change the times, the user must flip SWITCH 17 down, wait for Red-Red(1), follow the packet format and end the line with `Alt+L`.
+In order to change the times, the user must flip SWITCH 17 down, wait for Red-Red(1), follow the packet format and end the line with `Ctrl+J`.
 If there are any issues with formatting, the console will output an error message.
 The states will be exactly the same as Mode 2.
 
@@ -92,6 +92,7 @@ The states will be exactly the same as Mode 2.
 * The user will be able to press the button even as the LED is lit, it will light up during the next set of green light
 * Red-Red(1) cannot jump to Green-Red-Ped 1 and Red-Red(2) cannot jump to Red-Green-Ped 2 as the jump will be too late
 * The user can either end the line with `\r\n` or just `\n`
+* Only integers will be used for the timer values
 
 #### Console States
 
