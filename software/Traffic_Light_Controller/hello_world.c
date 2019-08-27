@@ -81,7 +81,6 @@ void reset_volatiles(){
 }
 
 alt_u32 simple_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state1 == rr1_1) || (current_state1 == rr2_1))
@@ -98,8 +97,6 @@ alt_u32 simple_tlc_timer_isr(void* context){
 }
 
 alt_u32 pedestrian_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
-
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state2 == rr1_2) | (current_state2 == rr2_2))
@@ -155,12 +152,10 @@ alt_u32 pedestrian_tlc_timer_isr(void* context){
 		current_state2++; //move to the next state if no special condition has been met
 
 	//reset the NS/EW pedestrian button interrupt flag when we have changed state (NS/EWHandled = 1)
-	if (previous_state2 == grp1_2) {
+	if (previous_state2 == grp1_2)
 		pedNS = 0;
-	}
-	else if (previous_state2 == rgp2_2) {
+	else if (previous_state2 == rgp2_2)
 		pedEW = 0;
-	}
 
 	if (current_state2 == buffer_2) //if at final state, loop back to initial state using buffer state
 		current_state2 = rr1_2;
@@ -172,8 +167,6 @@ return 0;
 
 //timer ISR (and system state transition logic) for configurable timer
 alt_u32 configurable_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
-
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state3 == rr1_3) || (current_state3 == rr2_3))
@@ -229,12 +222,10 @@ alt_u32 configurable_tlc_timer_isr(void* context){
 		current_state3++; //move to the next state if no
 
 	//reset the NS/EW pedestrian button interrupt flag when we have changed state (NS/EWHandled = 1)
-	if (previous_state3 == grp1_3) {
+	if (previous_state3 == grp1_3)
 		pedNS = 0;
-	}
-	else if (previous_state3 == rgp2_3) {
+	else if (previous_state3 == rgp2_3)
 		pedEW = 0;
-	}
 
 	if (current_state3 == buffer_3) //if at final state, loop back to initial state using buffer state
 		current_state3 = rr1_3;
@@ -246,8 +237,6 @@ return 0;
 
 //timer ISR (and system state transition logic) for configurable timer
 alt_u32 camera_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
-
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state4 == rr1_4) || (current_state4 == rr2_4))
@@ -559,7 +548,7 @@ int configurable_tlc(){
 						for (int j = 0; j < 6; ++j){
 							if ((numbers[j] <= 0) || (numbers[j] > 9999)){
 								notinrange = 1;
-								printf("Please re-enter numbers \n");
+								printf("Numbers out of range, please re-enter numbers \n");
 								break;
 							}
 						}

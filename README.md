@@ -34,12 +34,12 @@ The state will stay for a certain amount of time (listed below) before switching
 
 | Console State Number | State      |
 | -------------------- | ---------: |
-| 0                    | Red-Red(1) |
-| 1                    | Green-Red  |
-| 2                    | Yellow-Red |
-| 3                    | Red-Red(2) |
-| 4                    | Red-Green  |
-| 5                    | Red-Yellow |
+|           0          | Red-Red(1) |
+|           1          | Green-Red  |
+|           2          | Yellow-Red |
+|           3          | Red-Red(2) |
+|           4          | Red-Green  |
+|           5          | Red-Yellow |
 
 ### Mode 2: Pedestrian State
 
@@ -57,20 +57,21 @@ The states will be the same as Mode 1 but will also contain Green-Red-Ped 1 and 
 #### Assumptions
 
 * Green-Red cannot jump to Green-Red-Ped 1 and Red-Green cannot jump to Red-Green-Ped 2 as there is no direct path on the state diagram
+* Red-Red(1) cannot jump to Green-Red-Ped 1 and Red-Red(2) cannot jump to Red-Green Ped 2 as the jump will be too late
 * The user will be able to press the button even as the LED is lit, it will light up during the next rotation.
 
 #### Console States
 
 | Console State Number | State            |
 | -------------------- | ---------------: |
-| 0                    | Red-Red(1)       |
-| 1                    | Green-Red        | 
-| 2                    | Green-Red-Ped 1  |
-| 3                    | Yellow-Red       |
-| 4                    | Red-Red(2)       |
-| 5                    | Red-Green        |
-| 6                    | Green-Red-Ped 2  |
-| 7                    | Red-Yellow       |
+|           0          | Red-Red(1)       |
+|           1          | Green-Red        | 
+|           2          | Green-Red-Ped 1  |
+|           3          | Yellow-Red       |
+|           4          | Red-Red(2)       |
+|           5          | Red-Green        |
+|           6          | Green-Red-Ped 2  |
+|           7          | Red-Yellow       |
 
 ### Mode 3: Configurable State
 
@@ -89,20 +90,21 @@ The states will be exactly the same as Mode 2.
 
 * Green-Red cannot jump to Green-Red-Ped 1 and Red-Green cannot jump to Red-Green-Ped 2 as there is no direct path on the state diagram
 * The user will be able to press the button even as the LED is lit, it will light up during the next set of green light
+* Red-Red(1) cannot jump to Green-Red-Ped 1 and Red-Red(2) cannot jump to Red-Green-Ped 2 as the jump will be too late
 * The user can either end the line with `\r\n` or just `\n`
 
 #### Console States
 
 | Console State Number | State            |
 | -------------------- | ---------------: |
-| 0                    | Red-Red(1)       |
-| 1                    | Green-Red        | 
-| 2                    | Green-Red-Ped 1  |
-| 3                    | Yellow-Red       |
-| 4                    | Red-Red(2)       |
-| 5                    | Red-Green        |
-| 6                    | Green-Red-Ped 2  |
-| 7                    | Red-Yellow       |
+|           0          | Red-Red(1)       |
+|           1          | Green-Red        | 
+|           2          | Green-Red-Ped 1  |
+|           3          | Yellow-Red       |
+|           4          | Red-Red(2)       |
+|           5          | Red-Green        |
+|           6          | Green-Red-Ped 2  |
+|           7          | Red-Yellow       |
 
 ### Mode 4: Camera State
 
@@ -125,19 +127,20 @@ The states will be exactly the same as Mode 3.
 #### Assumptions
 
 * Only one vehicle can enter the intersection at a time
-* The vehicle will travel through the intersection on the red light regardless of direction
+* Red-Red(1) cannot jump to Green-Red-Ped 1 and Red-Red(2) cannot jump to Red-Green-Ped 2 as the jump will be too late
+* The vehicle will travel through the intersection in the green light direction
 
 #### Console States
 
 | Console State Number | State            |
 | -------------------- | ---------------: |
-| 0                    | Red-Red(1)       |
-| 1                    | Green-Red        | 
-| 2                    | Green-Red-Ped 1  |
-| 3                    | Yellow-Red       |
-| 4                    | Red-Red(2)       |
-| 5                    | Red-Green        |
-| 6                    | Green-Red-Ped 2  |
-| 7                    | Red-Yellow       |
+|           0          | Red-Red(1)       |
+|           1          | Green-Red        | 
+|           2          | Green-Red-Ped 1  |
+|           3          | Yellow-Red       |
+|           4          | Red-Red(2)       |
+|           5          | Red-Green        |
+|           6          | Green-Red-Ped 2  |
+|           7          | Red-Yellow       |
 
 //TODO: add alt_alarm_stop()
