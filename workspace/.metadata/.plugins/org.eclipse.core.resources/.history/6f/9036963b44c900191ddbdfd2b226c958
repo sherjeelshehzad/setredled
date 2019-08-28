@@ -81,7 +81,6 @@ void reset_volatiles(){
 }
 
 alt_u32 simple_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state1 == rr1_1) || (current_state1 == rr2_1))
@@ -98,8 +97,6 @@ alt_u32 simple_tlc_timer_isr(void* context){
 }
 
 alt_u32 pedestrian_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
-
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state2 == rr1_2) | (current_state2 == rr2_2))
@@ -170,8 +167,6 @@ return 0;
 
 //timer ISR (and system state transition logic) for configurable timer
 alt_u32 configurable_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
-
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state3 == rr1_3) || (current_state3 == rr2_3))
@@ -242,8 +237,6 @@ return 0;
 
 //timer ISR (and system state transition logic) for configurable timer
 alt_u32 camera_tlc_timer_isr(void* context){
-	//enum simple_state *something = (enum simple_state*) context;
-
 	//if there is a pending mode request and we are in a safe state, do not run any output logic and kill the timer
 	if (mode_request != current_mode){
 		if ((current_state4 == rr1_4) || (current_state4 == rr2_4))
@@ -299,10 +292,12 @@ alt_u32 camera_tlc_timer_isr(void* context){
 		current_state4++; //move to the next state if no
 
 	//reset the NS/EW pedestrian button interrupt flag when we have changed state (NS/EWHandled = 1)
-	if (previous_state4 == grp1_4)
+	if (previous_state4 == grp1_4) {
 		pedNS = 0;
-	else if (previous_state4 == rgp2_4)
+	}
+	else if (previous_state4 == rgp2_4) {
 		pedEW = 0;
+	}
 
 	if (current_state4 == buffer_4) //if at final state, loop back to initial state using buffer state
 		current_state4 = rr1_4;
@@ -330,13 +325,11 @@ void button_interrupt(void* context, alt_u32 id) {
 	unsigned int uiButtonsValue = IORD_ALTERA_AVALON_PIO_DATA(BUTTONS_BASE);
 	void* timerContext = 0;
 
-	if (!(uiButtonsValue & 1<<0)) {
+	//only allows the pedestrian inputs in mode 2,3 and 4
+	if ((!(uiButtonsValue & 1<<0)) && !((current_mode == 1) || (current_mode == 0)))
 		pedNS = 1;
-	}
-
-	if (!(uiButtonsValue & 1<<1)) {
+	if ((!(uiButtonsValue & 1<<1)) && !((current_mode == 1) || (current_mode == 0)))
 		pedEW = 1;
-	}
 	//vehicle crossing interrupt
 	if (current_mode == 4){
 		if ((edgeCapture & 1<<2)) {
@@ -555,7 +548,7 @@ int configurable_tlc(){
 						for (int j = 0; j < 6; ++j){
 							if ((numbers[j] <= 0) || (numbers[j] > 9999)){
 								notinrange = 1;
-								printf("Please re-enter numbers \n");
+								printf("Numbers out of range, please re-enter numbers \n");
 								break;
 							}
 						}
@@ -688,7 +681,7 @@ int camera_tlc(){
 						for (int j = 0; j < 6; ++j){
 							if ((numbers[j] <= 0) || (numbers[j] > 9999)){
 								notinrange = 1;
-								fprintf(uart,"Please re-enter numbers\r\n");
+								fprintf(uart,"Numbers out of range, please re-enter numbers\r\n");
 								break;
 							}
 						}
@@ -774,7 +767,8 @@ int main() {
 	alt_irq_register(BUTTONS_IRQ, context, button_interrupt);
 	//turn on the LCD
 	lcd = fopen(LCD_NAME, "w");
-	uart = fopen(UART_NAME, "r+");
+	uart = fopen(UART_NAME, "r+"); //Open an existing file for both reading and writing.
+	//The initial contents of the file are unchanged and the initial file position is at the beginning of the file.
 
 	while(1) {
 		//read switch value and bitmask to check specific switches (descending priority)

@@ -352,13 +352,13 @@ void button_interrupt(void* context, alt_u32 id) {
 			else{
 				alt_alarm_stop(&timer_camera);
 				alt_alarm_stop(&timer_vehicle);
+				camera_timer_has_started = 0;
 				fprintf(uart,"Vehicle left\r\n");
 				fprintf(uart,"Vehicle was in the intersection for %d ms.\r\n",count);
 				count = 0;
 			}
 		}
 	}
-
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(BUTTONS_BASE, 0);
 }
 
