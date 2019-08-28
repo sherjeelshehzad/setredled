@@ -33,7 +33,7 @@ The state will stay for a certain amount of time (listed below) before switching
 #### Console States
 
 | Console State Number | State      |
-| -------------------- | ---------: |
+| :------------------: | :--------: |
 |           0          | Red-Red(1) |
 |           1          | Green-Red  |
 |           2          | Yellow-Red |
@@ -63,7 +63,7 @@ The states will be the same as Mode 1 but will also contain Green-Red-Ped 1 and 
 #### Console States
 
 | Console State Number | State            |
-| -------------------- | ---------------: |
+| :------------------: | :--------------: |
 |           0          | Red-Red(1)       |
 |           1          | Green-Red        | 
 |           2          | Green-Red-Ped 1  |
@@ -97,7 +97,7 @@ The states will be exactly the same as Mode 2.
 #### Console States
 
 | Console State Number | State            |
-| -------------------- | ---------------: |
+| :------------------: | :--------------: |
 |           0          | Red-Red(1)       |
 |           1          | Green-Red        | 
 |           2          | Green-Red-Ped 1  |
@@ -134,7 +134,7 @@ The states will be exactly the same as Mode 3.
 #### Console States
 
 | Console State Number | State            |
-| -------------------- | ---------------: |
+| :------------------: | :--------------: |
 |           0          | Red-Red(1)       |
 |           1          | Green-Red        | 
 |           2          | Green-Red-Ped 1  |
