@@ -48,6 +48,12 @@ BUTTON 0 correlates to the NS crossing and BUTTON 1 correlates to the EW crossin
 Once pressed, it queues the controller and will light up once the conditions have been met.
 The states will be the same as Mode 1 but will also contain Green-Red-Ped 1 and Red-Green-Ped 2 for the NS and EW crossing respectively.
 
+The state will stay for a certain amount of time (listed below) before switching in ms.
+
+* Red-Red(1) / Red-Red(2): 500
+* Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
+* Yellow-Red / Red-Yellow: 2000
+
 #### The mode contains the following functions:
 
 * *alt_u32 pedestrian_tlc_timer_isr(void\* context)*: Handles the Pedestrian Mode ISR 
@@ -79,6 +85,12 @@ The Configurable State allows the user to configure the time between states usin
 In order to change the times, the user must flip SWITCH 17 down, wait for Red-Red(1), follow the packet format and end the line with `Ctrl+J`.
 If there are any issues with formatting, the console will output an error message.
 The states will be exactly the same as Mode 2.
+
+As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
+
+* Red-Red(1) / Red-Red(2): 500
+* Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
+* Yellow-Red / Red-Yellow: 2000
 
 #### The mode contains the following functions:
 
@@ -116,6 +128,12 @@ Alternatively, if the car enters on a red light then a snapshot should be taken 
 The console will then output the time the vehicle is in the intersection.
 BUTTON 2 will toggle the camera on and off.
 The states will be exactly the same as Mode 3.
+
+As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
+
+* Red-Red(1) / Red-Red(2): 500
+* Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
+* Yellow-Red / Red-Yellow: 2000
 
 #### The mode contains the following functions:
 
