@@ -1,4 +1,4 @@
-# COMPSYS 303 Assignment 1 Group 23: Traffic Light Controller
+# COMPSYS 303 Assignment 1 Group 26: Traffic Light Controller
 ## Sherjeel Shehzad and Kevin Tang
 
 ### The code contains 4 modes: *Simple, Pedestrian, Configurable and Camera*
