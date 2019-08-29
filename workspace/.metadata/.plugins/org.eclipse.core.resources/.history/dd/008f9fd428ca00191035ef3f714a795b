@@ -236,6 +236,7 @@ void button_interrupt(void* context, alt_u32 id) {
 					alt_alarm_stop(&timer_camera);
 					camera_timer_has_started = 0;
 				}
+
 				alt_alarm_stop(&timer_vehicle);
 				fprintf(uart,"Vehicle left\r\n");
 				fprintf(uart,"Vehicle was in the intersection for %d ms.\r\n",count);

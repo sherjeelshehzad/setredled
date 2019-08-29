@@ -90,7 +90,6 @@ void reset_volatiles(){
 	}
 	if (camera_timer_has_started){
 		alt_alarm_stop(&timer_camera);
-		camera_timer_has_started = 0;
 	}
 }
 
@@ -232,10 +231,10 @@ void button_interrupt(void* context, alt_u32 id) {
 			//check for even button press (vehicle leaving)
 			else{
 				//stop alarms since vehicle has left before 2s are up
-				if (camera_timer_has_started){
+				if (camera_timer_has_started)
 					alt_alarm_stop(&timer_camera);
-					camera_timer_has_started = 0;
-				}
+
+				camera_timer_has_started = 0;
 				alt_alarm_stop(&timer_vehicle);
 				fprintf(uart,"Vehicle left\r\n");
 				fprintf(uart,"Vehicle was in the intersection for %d ms.\r\n",count);

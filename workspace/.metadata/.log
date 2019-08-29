@@ -4863,3 +4863,84 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 15:55:08.574
 !MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 16:06:12.221
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 16:06:13.741
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 16:06:16.176
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 17:43:10.333
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 17:43:11.203
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 17:43:13.637
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 17:58:44.283
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 17:58:45.204
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 17:58:47.638
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:09:49.557
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:09:50.417
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:09:52.840
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:37:20.826
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:37:21.696
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:37:24.132
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:38:06.641
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:38:07.491
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:38:09.937
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:38:36.818
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:38:37.708
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:38:40.150
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:46:42.941
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:46:43.802
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:46:46.255
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:50:52.162
+!MESSAGE Terminated Launch with connection: 10USB-Blaster on localhost [USB-0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:50:53.022
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --stop --accept-bad-sysid --sidp=0x0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-08-29 18:50:55.455
+!MESSAGE Executing: [C:/intelfpga/16.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=USB-Blaster on localhost [USB-0]' --device=1 --instance=0 --go --accept-bad-sysid --sidp=0x0 //files.auckland.ac.nz/myhome/Desktop/Group_28_CS301_A1/software/Traffic_Light_Controller/Traffic_Light_Controller.elf]

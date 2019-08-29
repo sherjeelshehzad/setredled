@@ -6,19 +6,23 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="pedestrian_tlc_timer_isr" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="camera_tlc_timer_isr"/>
+			<item value="current_state4"/>
+			<item value="current_state3"/>
 			<item value="red_base"/>
 			<item value="17"/>
 			<item value="pedew = 0"/>
 			<item value="pedew"/>
-			<item value="current_state3"/>
 		</list>
 		<list key="replacehistory">
+			<item value="pedestrian_tlc_timer_isr"/>
+			<item value="current_state2"/>
 			<item value="current_state4"/>
 		</list>
 	</section>

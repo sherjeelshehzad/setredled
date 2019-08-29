@@ -84,14 +84,10 @@ void reset_volatiles(){
 	t6 = yrry;
 	//stop timer alarms to avoid incorrect timing when changing modes
 	alt_alarm_stop(&timer_vehicle);
-	if (timer_has_started){
+	if (timer_has_started)
 		alt_alarm_stop(&timer_simple);
-		timer_has_started = 0;
-	}
-	if (camera_timer_has_started){
+	if (camera_timer_has_started)
 		alt_alarm_stop(&timer_camera);
-		camera_timer_has_started = 0;
-	}
 }
 
 //timer interrupt service routine for mode 1 states
@@ -106,7 +102,7 @@ alt_u32 simple_tlc_timer_isr(void* context){
 	current_state1++; //move to the next state
 	if (current_state1 == buffer_1) //if at final state, loop back to initial state using a buffer state
 		current_state1 = rr1_1;
-	printf("Current State: Simple State %d\r\n", current_state1);
+	printf("Current state: Simple State %d\r\n", current_state1);
 	timer_has_started = 0; //reset timer_has_started flag
 	return 0;
 }
@@ -176,7 +172,7 @@ alt_u32 pedestrian_tlc_timer_isr(void* context){
 	if (current_state2 == buffer_2) //if at final state, loop back to initial state using buffer state
 		current_state2 = rr1_2;
 	//print for debug
-	printf("Current State: Complex State %d\r\n", current_state2);
+	printf("Current state: Complex State %d\r\n", current_state2);
 
 	timer_has_started = 0; //reset timer_has_started flag
 	return 0;
@@ -191,7 +187,6 @@ alt_u32 camera_timer_isr(void* context){
 
 //timer for the vehicle being in the intersection
 alt_u32 vehicle_timer_isr(void* context){
-	//increment timer every millisecond, and restart it every millisecond
 	count++;
 	return 1;
 }
@@ -232,10 +227,10 @@ void button_interrupt(void* context, alt_u32 id) {
 			//check for even button press (vehicle leaving)
 			else{
 				//stop alarms since vehicle has left before 2s are up
-				if (camera_timer_has_started){
+				if (camera_timer_has_started)
 					alt_alarm_stop(&timer_camera);
-					camera_timer_has_started = 0;
-				}
+
+				camera_timer_has_started = 0;
 				alt_alarm_stop(&timer_vehicle);
 				fprintf(uart,"Vehicle left\r\n");
 				fprintf(uart,"Vehicle was in the intersection for %d ms.\r\n",count);
@@ -526,7 +521,8 @@ int main() {
 	alt_irq_register(BUTTONS_IRQ, context, button_interrupt);
 	//turn on the LCD and UART
 	lcd = fopen(LCD_NAME, "w");
-	uart = fopen(UART_NAME, "r+"); //Open the UART file for both reading and writing (for mode 3 and 4)
+	uart = fopen(UART_NAME, "r+"); //Open the UART file for both reading and writing (mode 3 and 4)
+	//The initial contents of the file are unchanged and the initial file position is at the beginning of the file.
 
 	while(1) {
 		//read switch value and bitmask to check specific switches (descending priority)
