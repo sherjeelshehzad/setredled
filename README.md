@@ -9,9 +9,9 @@
 * *int lcd_set_mode(int mode)*: Shows the mode on the LCD
 * *int main()*: Runs all the functions of each mode and changes modes
 
-In order to change states, SWITCHES 0-3, with SWITCH 3 representing Mode 4 and SWITCH 0 representing Mode 0.
-Mode 4 will have the highest priority if multiple switches are flipped whereas Mode 1 will have the least priority.
-Once a Mode Request has been detected, the mode will function as normally until either the Red-Red(1) or Red-Red(2) states where it will then switch modes.
+In order to change states, SWITCHES 0-3 will be used, with SWITCH 3 representing Mode 4 and SWITCH 0 representing Mode 0.
+Mode 4 will have the highest priority if multiple switches are flipped, whereas Mode 1 will have the least priority.
+Once a Mode Request has been detected, the current mode will continue normally until either the Red-Red(1) or Red-Red(2) states where it will then switch modes and reset to the Red-Red(1) state.
 Each subsequent mode will build on top of previous modes.
 
 ### Mode 1: Simple Mode
@@ -44,7 +44,7 @@ The states will stay for a certain amount of time (listed below) before switchin
 ### Mode 2: Pedestrian Mode
 
 The Pedestrian Mode follows the same pattern as the Simple Mode. However, it accepts user input to allow pedestrians to cross.
-BUTTON 0 correlates to the NS crossing and BUTTON 1 correlates to the EW crossing. 
+KEY 0 correlates to the NS crossing and KEY 1 correlates to the EW crossing. 
 Once pressed, it queues the pedestrian crossing and will light up the corresponding pedestrian lights once the conditions have been met.
 The states will be the same as the Simple Mode (Mode 1), but will additionally contain Green-Red-Ped NS and Red-Green-Ped EW for the NS and EW crossings respectively.
 
