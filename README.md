@@ -12,7 +12,7 @@
 In order to change states, SWITCHES 0-3, with SWITCH 3 representing Mode 4 and SWITCH 0 representing Mode 0.
 Mode 4 will have the highest priority if multiple switches are flipped whereas Mode 1 will have the least priority.
 Once a Mode Request has been detected, the mode will function as normally until the Red-Red(1) state where it will then switch modes.
-*WE ASSUME THAT THE MODES BUILD ON TOP OF EACH OTHER.*
+The modes will build on top of each other.
 
 ### Mode 1: Simple State
 
@@ -82,8 +82,6 @@ The state will stay for a certain amount of time (listed below) before switching
 ### Mode 3: Configurable State
 
 The Configurable State allows the user to configure the time between states using UART and PuTTY based on Mode 2.
-In order to change the times, the user must flip SWITCH 17 down, wait for Red-Red(1), follow the packet format and end the line with `Ctrl+J`.
-If there are any issues with formatting, the console will output an error message.
 The states will be exactly the same as Mode 2.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
@@ -91,6 +89,16 @@ As default, the state will stay for a certain amount of time (listed below) befo
 * Red-Red(1) / Red-Red(2): 500
 * Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
 * Yellow-Red / Red-Yellow: 2000
+
+#### UART Packet Format
+
+#,#,#,#,#,#[\r]\n
+* Where '#' is a 1-4 digit integer
+* ',' separates the timeout values
+* \r is ignored (and may or may-not be received) (`Ctrl+M`)
+* \n signals the end of the inputs (`Ctrl+J`)
+
+If there are any issues with the input format, the PuTTY console will output an error message
 
 #### The mode contains the following functions:
 
@@ -128,12 +136,23 @@ Alternatively, if the car enters on a red light then a snapshot should be taken 
 The console will then output the time the vehicle is in the intersection.
 BUTTON 2 will toggle the camera on and off.
 The states will be exactly the same as Mode 3.
+The switching times can be changed through PuTTY just like Mode 3.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 
 * Red-Red(1) / Red-Red(2): 500
 * Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
 * Yellow-Red / Red-Yellow: 2000
+
+#### UART Packet Format
+
+#,#,#,#,#,#[\r]\n
+* Where '#' is a 1-4 digit integer
+* ',' separates the timeout values
+* \r is ignored (and may or may-not be received) (`Ctrl+M`)
+* \n signals the end of the inputs (`Ctrl+J`)
+
+If there are any issues with the input format, the PuTTY console will output an error message
 
 #### The mode contains the following functions:
 
