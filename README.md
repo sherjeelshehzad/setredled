@@ -86,7 +86,7 @@ The states will be exactly the same as Mode 2.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 In order to change the configure the switching time, the user must switch SWITCH 17 *up* then wait for the state to be Red-Red 1.
-After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect,
+After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect.
 
 * Red-Red(1) / Red-Red(2): 500
 * Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
@@ -140,7 +140,7 @@ BUTTON 2 will toggle the camera on and off.
 The states will be exactly the same as Mode 3.
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 In order to change the configure the switching time, the user must switch SWITCH 17 *up* then wait for the state to be Red-Red 1.
-After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect,
+After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 
