@@ -95,8 +95,8 @@ As default, the state will stay for a certain amount of time (listed below) befo
 #,#,#,#,#,#[\r]\n
 * Where '#' is a 1-4 digit integer
 * ',' separates the timeout values
-* \r is ignored (and may or may-not be received) (`Ctrl+M`)
-* \n signals the end of the inputs (`Ctrl+J`)
+* \r is ignored (and may or may-not be received) (`Ctrl+M` on PuTTY)
+* \n signals the end of the inputs (`Ctrl+J` on PuTTY)
 
 If there are any issues with the input format, the PuTTY console will output an error message
 
