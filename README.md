@@ -85,6 +85,8 @@ The Configurable State allows the user to configure the time between states usin
 The states will be exactly the same as Mode 2.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
+In order to change the configure the switching time, the user must switch SWITCH 17 *up* then wait for the state to be Red-Red 1.
+After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect,
 
 * Red-Red(1) / Red-Red(2): 500
 * Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
@@ -98,7 +100,7 @@ As default, the state will stay for a certain amount of time (listed below) befo
 * \r is ignored (and may or may-not be received) (`Ctrl+M` on PuTTY)
 * \n signals the end of the inputs (`Ctrl+J` on PuTTY)
 
-If there are any issues with the input format, the PuTTY console will output an error message
+If there are any issues with the input format, the PuTTY console will output an error message and will ask the user to input another set of inputs.
 
 #### The mode contains the following functions:
 
@@ -136,7 +138,9 @@ Alternatively, if the car enters on a red light then a snapshot should be taken 
 The console will then output the time the vehicle is in the intersection.
 BUTTON 2 will toggle the camera on and off.
 The states will be exactly the same as Mode 3.
-The switching times can be changed through PuTTY just like Mode 3.
+As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
+In order to change the configure the switching time, the user must switch SWITCH 17 *up* then wait for the state to be Red-Red 1.
+After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect,
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 
@@ -152,7 +156,7 @@ As default, the state will stay for a certain amount of time (listed below) befo
 * \r is ignored (and may or may-not be received) (`Ctrl+M`)
 * \n signals the end of the inputs (`Ctrl+J`)
 
-If there are any issues with the input format, the PuTTY console will output an error message
+If there are any issues with the input format, the PuTTY console will output an error message and will ask the user to input another set of inputs.
 
 #### The mode contains the following functions:
 
