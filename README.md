@@ -86,7 +86,7 @@ The states will be exactly the same as Mode 2.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 In order to change the configure the switching time, the user must switch SWITCH 17 *up* then wait for the state to be Red-Red 1.
-After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect.
+Then they must switch SWITCH 17 *down* and after a valid set of inputs, the updated switching times will take effect.
 
 * Red-Red(1) / Red-Red(2): 500
 * Green-Red / Green-Red-Ped 1 / Red-Green / Red-Green-Ped 2: 6000
@@ -97,7 +97,7 @@ After a valid set of inputs, the user must switch SWITCH 17 *down* in order for 
 #,#,#,#,#,#[\r]\n
 * Where '#' is a 1-4 digit integer
 * ',' separates the timeout values
-* \r is ignored (and may or may-not be received) (`Ctrl+M` on PuTTY)
+* \r signals a carriage return and is optional (`Ctrl+M` on PuTTY)
 * \n signals the end of the inputs (`Ctrl+J` on PuTTY)
 
 If there are any issues with the input format, the PuTTY console will output an error message and will ask the user to input another set of inputs.
@@ -135,12 +135,12 @@ The Camera State allows the user to track the movement of a vehicle travelling t
 The camera will be activated whenever a vehicle crosses the intersection when the light is yellow.
 If the vehicle remains within the intersection after 2 seconds, the camera will take a snapshot of that vehicle. 
 Alternatively, if the car enters on a red light then a snapshot should be taken immediately.
-The console will then output the time the vehicle is in the intersection.
+The console will then output the time the vehicle is in the intersection via UART.
 BUTTON 2 will toggle the camera on and off.
 The states will be exactly the same as Mode 3.
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 In order to change the configure the switching time, the user must switch SWITCH 17 *up* then wait for the state to be Red-Red 1.
-After a valid set of inputs, the user must switch SWITCH 17 *down* in order for the updated switching times to take effect.
+Then they must switch SWITCH 17 *down* and after a valid set of inputs, the updated switching times will take effect.
 
 As default, the state will stay for a certain amount of time (listed below) before switching in ms or unless changed in PuTTy.
 
@@ -153,8 +153,8 @@ As default, the state will stay for a certain amount of time (listed below) befo
 #,#,#,#,#,#[\r]\n
 * Where '#' is a 1-4 digit integer
 * ',' separates the timeout values
-* \r is ignored (and may or may-not be received) (`Ctrl+M`)
-* \n signals the end of the inputs (`Ctrl+J`)
+* \r signals a carriage return and is optional (`Ctrl+M` on PuTTy)
+* \n signals the end of the inputs (`Ctrl+J` on PuTTY)
 
 If there are any issues with the input format, the PuTTY console will output an error message and will ask the user to input another set of inputs.
 
