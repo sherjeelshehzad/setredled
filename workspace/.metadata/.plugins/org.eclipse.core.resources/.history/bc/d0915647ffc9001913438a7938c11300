@@ -503,7 +503,7 @@ int configurable_tlc(){
 		switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
 
 		if (switch_value & (1<<17)){
-			fprintf(uart,"Configuration mode, disable switch 17 then input new timeout values:\r\n");
+			fprintf(uart,"Configuration mode, disable switch 17 then input new timeout values: ");
 			//if switch 17 indicates configuration mode, block until complete valid string is received
 			unsigned int strcomplete = 0;
 			unsigned int i = 0; //index for string retrieved from UART
@@ -519,7 +519,6 @@ int configurable_tlc(){
 			//block code and get input from UART stream
 			while (strcomplete == 0){
 				config_values[i] = fgetc(uart);
-				//echo back to both UART and console
 				printf("%c",config_values[i]);
 				fprintf(uart,"%c",config_values[i]);
 				++i;
@@ -558,11 +557,11 @@ int configurable_tlc(){
 							strcomplete = 1;
 						}
 						else{
-							fprintf(uart,"Invalid input, please re-enter numbers:\r\n");
+							fprintf(uart,"Invalid input, please re-enter numbers \r\n");
 						}
 					}
 					else{
-						fprintf(uart,"Not enough numbers input, please re-enter numbers:\r\n");
+						fprintf(uart,"Not enough numbers input, please re-enter numbers \r\n");
 					}
 				}
 			}
@@ -644,7 +643,6 @@ int camera_tlc(){
 		switch_value = IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE);
 
 		if (switch_value & (1<<17)){
-			fprintf(uart,"Configuration mode, disable switch 17 then input new timeout values:\r\n");
 			//if switch 17 indicates configuration mode, block until complete valid string is received
 			unsigned int strcomplete = 0;
 			unsigned int i = 0; //index for string retrieved from UART
@@ -661,7 +659,6 @@ int camera_tlc(){
 			while (strcomplete == 0){
 				config_values[i] = fgetc(uart);
 				printf("%c",config_values[i]);
-				fprintf(uart,"%c",config_values[i]);
 				++i;
 				if (config_values[i-1] == '\n'){
 
@@ -691,18 +688,13 @@ int camera_tlc(){
 						for (int j = 0; j < 6; ++j){
 							if ((numbers[j] <= 0) || (numbers[j] > 9999)){
 								notinrange = 1;
+								fprintf(uart,"Numbers out of range, please re-enter numbers\r\n");
 								break;
 							}
 						}
 						if (!(notinrange)){
 							strcomplete = 1;
 						}
-						else{
-							fprintf(uart,"Invalid input, please re-enter numbers:\r\n");
-						}
-					}
-					else{
-						fprintf(uart,"Not enough numbers input, please re-enter numbers:\r\n");
 					}
 				}
 			}

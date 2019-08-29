@@ -691,6 +691,7 @@ int camera_tlc(){
 						for (int j = 0; j < 6; ++j){
 							if ((numbers[j] <= 0) || (numbers[j] > 9999)){
 								notinrange = 1;
+
 								break;
 							}
 						}
@@ -700,9 +701,6 @@ int camera_tlc(){
 						else{
 							fprintf(uart,"Invalid input, please re-enter numbers:\r\n");
 						}
-					}
-					else{
-						fprintf(uart,"Not enough numbers input, please re-enter numbers:\r\n");
 					}
 				}
 			}

@@ -558,11 +558,11 @@ int configurable_tlc(){
 							strcomplete = 1;
 						}
 						else{
-							fprintf(uart,"Invalid input, please re-enter numbers:\r\n");
+							fprintf(uart,"Invalid input, please re-enter numbers \r\n");
 						}
 					}
 					else{
-						fprintf(uart,"Not enough numbers input, please re-enter numbers:\r\n");
+						fprintf(uart,"Not enough numbers input, please re-enter numbers \r\n");
 					}
 				}
 			}
@@ -691,18 +691,13 @@ int camera_tlc(){
 						for (int j = 0; j < 6; ++j){
 							if ((numbers[j] <= 0) || (numbers[j] > 9999)){
 								notinrange = 1;
+								fprintf(uart,"Numbers out of range, please re-enter numbers\r\n");
 								break;
 							}
 						}
 						if (!(notinrange)){
 							strcomplete = 1;
 						}
-						else{
-							fprintf(uart,"Invalid input, please re-enter numbers:\r\n");
-						}
-					}
-					else{
-						fprintf(uart,"Not enough numbers input, please re-enter numbers:\r\n");
 					}
 				}
 			}
